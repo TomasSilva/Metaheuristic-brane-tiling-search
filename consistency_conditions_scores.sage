@@ -35,6 +35,12 @@ def UniqueRepresentative(pair, d):
     return min(S)
 
 #PT - 1 : equivalence
+"""
+    pair1, pair2: 2 pairs of permutations (sigmaB, sigmaW) \in SymmetricGroup(d) x SymmetricGroup(d)
+    d: degree of the symmetric group
+    
+    return: PT1 score
+"""
 def PT1(pair1, pair2, d):
     # True if pair1 equivalent to pair2
     if UniqueRepresentative(pair1, d) == UniqueRepresentative(pair2, d):
@@ -43,10 +49,23 @@ def PT1(pair1, pair2, d):
         return False    
 
 # PT - 2 : transitivity
+"""
+    sigmaB, sigmaW: pair of permutations (sigmaB, sigmaW) \in SymmetricGroup(d) x SymmetricGroup(d)
+    _: degree of the symmetric group
+    
+    return: PT2 score
+"""
 def PT2_Score(sigmaB, sigmaW, _):
     gp = PermutationGroup([sigmaB.cycle_tuples(singletons=True), sigmaW.cycle_tuples(singletons=True)])
     return 1/len(gp.orbits())
-   
+
+# PT - 3: Riemann Hurwitz conditions
+"""
+    sigmaB, sigmaW: pair of permutations (sigmaB, sigmaW) \in SymmetricGroup(d) x SymmetricGroup(d)
+    d: degree of the symmetric group
+    
+    return: PT3a score
+"""   
 def PT3a_Score(sigmaB, sigmaW, d):
     # Check  PT3 - a, the  first  Hurwitz  conditions
     a = len(sigmaB.cycle_type())
@@ -58,7 +77,12 @@ def PT3a_Score(sigmaB, sigmaW, d):
     diff = d - a - b - c
     
     return (1/(1+abs(diff)))
-
+"""
+    sigmaB, sigmaW: pair of permutations (sigmaB, sigmaW) \in SymmetricGroup(d) x SymmetricGroup(d)
+    d: degree of the symmetric group
+    
+    return: PT3b score
+"""   
 def PT3b_Score(sigmaB, sigmaW, d):
     # Check  PT3 - b, that  sigmaB  and  sigmaW  have  the  same  number of  cycles
     a = sigmaB.cycle_tuples(singletons=True)
@@ -71,6 +95,12 @@ def PT3b_Score(sigmaB, sigmaW, d):
 
 
 # PT - 5 : No  1 - cycles  and  No  2 - cycles; otherwise  no  point  to  continue
+"""
+    sigmaB, sigmaW: pair of permutations (sigmaB, sigmaW) \in SymmetricGroup(d) x SymmetricGroup(d)
+    _: degree of the symmetric group
+    
+    return: PT5 score
+"""
 def PT5_Score(sigmaB, sigmaW, _):
     a = sigmaB.cycle_tuples(singletons=True)
     b = sigmaW.cycle_tuples(singletons=True)
@@ -88,6 +118,12 @@ def PT5_Score(sigmaB, sigmaW, _):
     
     return (1/(1+n1cB+n2cB+n1cW+n2cW)) 
 
+"""
+    sigmaB, sigmaW: pair of permutations (sigmaB, sigmaW) \in SymmetricGroup(d) x SymmetricGroup(d)
+    _: degree of the symmetric group
+    
+    return: CONS1 score
+"""
 def CONS1_Score(sigmaB, sigmaW, _):
     hgp = PermutationGroup([(sigmaB*(sigmaW.inverse())).cycle_string(singletons=True)])    
     def cycles_len(p):
@@ -102,6 +138,13 @@ def CONS1_Score(sigmaB, sigmaW, _):
             n1c = n1c + 1
     return (1/(1+n1c))
 
+
+"""
+    sigmaB, sigmaW: pair of permutations (sigmaB, sigmaW) \in SymmetricGroup(d) x SymmetricGroup(d)
+    _: degree of the symmetric group
+    
+    return: CONS2 score
+"""
 def CONS2_Score(sigmaB, sigmaW, _):
     hgp = PermutationGroup([(sigmaB*(sigmaW.inverse())).cycle_string(singletons=True)])    
     def cycles_len(p):
