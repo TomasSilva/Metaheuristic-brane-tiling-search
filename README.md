@@ -11,14 +11,18 @@ This repository presents a combinatorial optimization approach, leveraging Simul
 
 # BibTex Citation 
 ```
-@misc{he2024metaheuristicgenerationbranetilings,
-      title={Metaheuristic Generation of Brane Tilings}, 
-      author={Yang-Hui He and Vishnu Jejjala and Tom\'as S. R. Silva},
-      year={2024},
-      eprint={2412.19313},
-      archivePrefix={arXiv},
-      primaryClass={hep-th},
-      url={https://arxiv.org/abs/2412.19313}, 
+@article{He2025,
+  title = {Metaheuristic generation of brane tilings},
+  volume = {862},
+  ISSN = {0370-2693},
+  url = {http://dx.doi.org/10.1016/j.physletb.2025.139365},
+  DOI = {10.1016/j.physletb.2025.139365},
+  journal = {Physics Letters B},
+  publisher = {Elsevier BV},
+  author = {He,  Yang-Hui and Jejjala,  Vishnu and Silva,  Tomás S.R.},
+  year = {2025},
+  month = mar,
+  pages = {139365}
 }
 ```
 
